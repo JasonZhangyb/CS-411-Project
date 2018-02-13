@@ -1,1 +1,20 @@
 CS 411 Project Proposal
+A3 Group 1
+Team Assignment 1 - Proposal
+2/12/2018
+Group Members: Kenneth Jusino, Nidhi Reddy, Mingyang Yan, Yibin Zhang
+
+
+Idea #1
+Our primary idea is to allow the user to input the name of an entree (or any other type of dish) they want, and in return, 
+the user will obtain a list of nearby restaurants that serve this dish and a list of recipes on how to prepare the dish. 
+Alternatively, the user can also just request the menu of a restaurant and click on an item on the menu to obtain the recipe. 
+Our application will utilize two APIs, Edamam and Zomato, which contains data for recipes and restaurants respectively. 
+Users will login using Facebook. Our database will store the user information such as saved locations, as well as past 
+searches. 
+
+Idea #2
+Our secondary idea is to have a user input some pictures representing their mood and/or feelings. The items in the images will 
+be analyzed using the Clarifai API to identify the main objects present in the images which we will use to choose a genre of 
+music in the Spotify API playlist to recommend a certain playlist/song to the user. Users will login using Facebook. Our 
+database will store user genre preferences and past searches. 
