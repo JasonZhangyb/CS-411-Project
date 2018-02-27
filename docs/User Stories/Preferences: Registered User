@@ -1,0 +1,7 @@
+Registered User
+As a registered user, I want to save the recipes and restaurants that I like so that I can review them afterwards. After 
+searching for a dish (refer to the “Searching Stories”)  I can click on the “heart” icon to save it to “My Favorites”. 
+Otherwise, after clicking on one of the resulting recipes/restaurants, I can also click on the “heart” icon besides the title 
+to save it. If I want to take a look at my saved recipes/restaurants, I can click on the “My Favorites” button at the top right
+corner of any screen, and this will lead me to "My Favorites" page where I can view everything I have saved, whether recipes, 
+restaurants, or dishes. 
