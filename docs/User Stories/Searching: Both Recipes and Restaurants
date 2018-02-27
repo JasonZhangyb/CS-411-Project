@@ -1,0 +1,8 @@
+Both Recipes and Restaurants
+As a user, I want to search both the recipe and the nearby restaurants. Once at the home page, I click on the search bar, and 
+type in the food I am looking for. I want to search for restaurants that have the dish and recipes on how to make it, so right 
+below the search bar, I click on both “Restaurants” and “Recipes” checkboxes and press the enter/search button. A new page pops
+up and a split screen will appear with restaurants on the left and recipes on how to make them on the right. Both sides will 
+show a limited amount of options, but i can keep clicking the “continue searching” button to view more. I find either a 
+restaurant or recipe I like, and I click on the one I like most. Refer to end of searching stories after a decision between 
+restaurant or recipe is made.
