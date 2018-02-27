@@ -1,0 +1,7 @@
+Recipe Only:
+As a user, I want to search for recipes for a specific dish. Once at the home page, I click on the search bar, and type in the
+food I am looking for. I only want to search for recipes, so right below the search bar, I click only on the “Recipes” checkbox
+and press the enter/search button. A new page brings the search bar to the top, and a list of recipes that relate to the item 
+I searched for pop up. Below the dishes name, is a prep time that corresponds to each recipe. I skim the page for the one most 
+preferable, and click on the recipe name. A new page loads and a list of ingredients and how to cook the meal pop up below the 
+recipe name. If i liked the dish, refer to “preferences stories”.
