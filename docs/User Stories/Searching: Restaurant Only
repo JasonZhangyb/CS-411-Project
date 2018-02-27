@@ -1,0 +1,7 @@
+Restaurant Only:
+As a user, I want to search for nearby restaurants that have a specific dish. Once at the home page, I click on the search bar,
+and type in the food I am looking for. I only want to search for restaurants that have the dish, so right below the search bar,
+I click on the “Restaurants” checkbox and press the enter/search button. A new page brings the search bar to the upper left 
+corner, and a list of restaurants within a certain mile radius pops up. I scroll and see each restaurants distance from my 
+IP address, the type of cuisine the restaurant offers, and its ratings. I skim and find the one i want. If I liked the 
+restaurant, refer to “preferences stories”.
