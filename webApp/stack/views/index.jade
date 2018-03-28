@@ -2,15 +2,7 @@ extends layout
 
 block content
   h1= title
-
-  //src="https://developer.edamam.com/attribution/badge.js"
-  //div
-    //id="edamam-badge"
-    //data-color="white"
-
   h4= "Search for a recipe below:"
-  //input(type="text" id="search")
-  //button(id="submit") Search
 
   form(action='/recipe', method = 'post')
     input(type="text", name="search", placeholder=" ")
