@@ -1,3 +1,11 @@
 Why We Chose MEAN as our Technology Stack
 
-The technology stack we chose to use for the prototype of what our API calls is the MEAN stack. We considered using Ruby but ultimately chose to use the MEAN stack. One main reason we chose MEAN was because using Node.js which is useful because everything is in Javascipt, while with Ruby, so much of what we will have written would be in Javascript, it's counterproductive to have two different languages to use. Node.js uses the JSON stored data format which enables it to run without any obstacles in data conversion and mismatches, whereas Ruby on Rails needs the same format from JSON to binary models. Node.js allows us to write JavaScript for both the server and client which makes it more convenient to transport data between the server and the client to co-ordinate the working simultaneously. Furthemore, Node.js is simply easier to learn and use for web programming applications. Lastly, in general, Node.js is faster than Ruby and even large enterprises have benefited from using Node.js
+The technology stack we chose to use for the prototype of what our API calls is the MEAN stack. We considered using Ruby but
+ultimately chose to use the MEAN stack. One main reason we chose MEAN was because using Node.js which is useful because 
+everything is in Javascipt, while with Ruby, so much of what we will have written would be in Javascript, it's 
+counterproductive to have two different languages to use. Node.js uses the JSON stored data format which enables it to run 
+without any obstacles in data conversion and mismatches, whereas Ruby on Rails needs the same format from JSON to binary 
+models. Node.js allows us to write JavaScript for both the server and client which makes it more convenient to transport data 
+between the server and the client to co-ordinate the working simultaneously. Furthemore, Node.js is simply easier to learn and 
+use for web programming applications. Lastly, in general, Node.js is faster than Ruby and even large enterprises have benefited
+from using Node.js
