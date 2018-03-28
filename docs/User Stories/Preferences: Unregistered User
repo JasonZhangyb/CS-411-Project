@@ -1,0 +1,4 @@
+Unregistered User
+As an unregistered user, I want to save the recipes and restaurants that I like so that I can review them afterwards. 
+First, refer to the “Unregistered User Creating Account” story in “Login Stories”. Next, refer to the “Registered User” story 
+in “Preferences Stories”.
