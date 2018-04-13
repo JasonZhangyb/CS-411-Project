@@ -3,4 +3,6 @@ extends layout
 block content
     h1= title
 
-    p Text returned: #{JSON.stringify(result.body)}
+    for results in result.hits
+        p #{results.recipe.label}
+        img(src=results.recipe.image)
