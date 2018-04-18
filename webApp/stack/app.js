@@ -9,6 +9,20 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var MongoClient = require('mongodb').MongoClient;
+
+// Connect to the db
+MongoClient.connect("mongodb://localhost", function (err, client) {
+    if (err) throw err;
+
+    var db = client.db("CS411");
+
+    db.collection("CS411test").findOne({}, function (findErr, result) {
+        if (findErr) throw findErr;
+            console.log(result.Title);
+            client.close();
+    });
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -18,6 +32,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Make our db accessible to our router
+//app.use(function(req,res,next){
+  //  req.db = db;
+    //next();
+//});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
