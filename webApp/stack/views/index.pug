@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  h4= "Search for a recipe below:"
+
+  form(action='/recipe', method = 'post')
+    input(type='text', name='search', placeholder=' ')
+    input(type='submit', action='/recipe')
+
+  a(href="/auth/twitter") Log in with Twitter
+  
