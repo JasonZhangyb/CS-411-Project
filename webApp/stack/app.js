@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
-var twitter = require('twitter');
 
 //flash is used with passport to pop up messages
 var flash = require('connect-flash');
@@ -14,6 +13,7 @@ var flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var twitter_routes = require('./routes/auth');
+var mainRouter = require('./routes/main');
 
 var app = express();
 
@@ -55,6 +55,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', twitter_routes);
+app.use('/main', mainRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -14,14 +14,19 @@ router.get('/', function(req, res) {
 router.post('/recipe', function(req, res) {
 
     console.log(req.body);
-    console.log(req.body.search1);
-    request('https://api.edamam.com/search?q='+ req.body.search1 + '&app_id=' + token1 +'&app_key=' + token2 + '&to=30', function (error, response, body){
+    console.log(req.body.search);
+    request('https://api.edamam.com/search?q='+ req.body.search + '&app_id=' + token1 +'&app_key=' + token2 + '&to=30', function (error, response, body){
         if (error) throw new Error(error);
         console.log(body);
         //res.render('recipe', {title: 'Recipes', result: JSON.parse(JSON.stringify(response))});
         res.render('recipe', {title: 'Recipes', result: JSON.parse(body)});
     });
 
+});
+
+router.post('/main', function(req, res) {
+    console.log(req.body);
+    res.render('main', { title: 'Chefz' });
 });
 
 module.exports = router;
