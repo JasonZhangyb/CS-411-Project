@@ -14,12 +14,17 @@ router.get('/', function(req, res) {
 
 router.post('/recipe', function(req, res) {
 
-    console.log(req.body);
-    console.log(req.body.search);
+    //console.log(req.body);
+    //console.log(req.body.search);
+
+    // search in cache recipes
+
+
+
     request('https://api.edamam.com/search?q='+ req.body.search + '&app_id=' + token1 +'&app_key=' + token2 + '&to=30', function (error, response, body){
         if (error) throw new Error(error);
-        console.log(body);
-        //res.render('recipe', {title: 'Recipes', result: JSON.parse(JSON.stringify(response))});
+        //console.log(body.hits);
+        //console.log(response);
         res.render('recipe', {title: 'Recipes', result: JSON.parse(body)});
     });
 

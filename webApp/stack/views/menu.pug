@@ -3,6 +3,7 @@ extends layout
 
 block content
     a(href="/") Go back to main page
+    a(href='/auth/logout') Log out Twitter
     ul
         each val in result
             p #{'---------------'} #{val.name} #{'----------------'}
