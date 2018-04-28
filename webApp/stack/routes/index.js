@@ -12,20 +12,22 @@ router.get('/', function(req, res) {
     res.render('index', { title: 'Recipe Search <3' });
 });
 
-router.post('/recipe', function(req, res) {
+router.post('/food', function(req, res) {
 
     //console.log(req.body);
     //console.log(req.body.search);
 
-    // search in cache recipes
+    // search in cache recipes with req.body.search
 
+
+    //get api response values
 
 
     request('https://api.edamam.com/search?q='+ req.body.search + '&app_id=' + token1 +'&app_key=' + token2 + '&to=30', function (error, response, body){
         if (error) throw new Error(error);
         //console.log(body.hits);
         //console.log(response);
-        res.render('recipe', {title: 'Recipes', result: JSON.parse(body)});
+        res.render('food', {title: 'Recipes', result: JSON.parse(body)});
     });
 
 });
