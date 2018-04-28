@@ -7,19 +7,35 @@ const router = express.Router();
 const Twitter = require('../config/Twitter');
 
 //Connect to user database
-//No reason not to use the crypto version of the user model (because crypto)
-//const User = require('../models/UserWithCrypto');
+const User = require('../models/User');
 
 const passport = require('passport');
 const Strategy = require('passport-twitter').Strategy;
 
-passport.use(new Strategy({
+var passportOption = {
     consumerKey: Twitter.CONSUMER_KEY,
     consumerSecret: Twitter.CONSUMER_SECRET,
-    callbackURL: Twitter.CALLBACK_URL
-}, function (token, tokenSecret, profile, callback){
-    return callback(null, profile);
-}));
+    callbackURL: Twitter.CALLBACK_URL}
+
+passport.use(new Strategy(passportOption,
+    function (token, tokenSecret, profile, callback){
+    User.findOneAndUpdate({userID: profile.id},
+        {
+            userID: profile.id,
+            username: profile.username
+        },
+        {'upsert': 'true'},
+        function(err, result){
+            if(err){
+                console.log(err)
+                return callback(err, null)
+            }
+            else{
+                return callback(null, profile)
+            }
+        })
+    })
+)
 
 passport.serializeUser(function (user, callback) {
     //console.log('in serialize, setting id on session:', user.id)
@@ -38,13 +54,24 @@ passport.deserializeUser(function (obj, callback) {
   //  res.redirect('/');
 //})
 
+router.get('/logout', function (req, res, next) {
+    User.findOneAndRemove({userID: req.user.userID})
+        .then(function (err, response) {
+            req.logOut()
+            res.clearCookie()
+            res.status = 401
+            res.redirect('/')
+        })
+})
+
 router.get('/twitter',
     passport.authenticate('twitter'));
 
 router.get('/callback', passport.authenticate('twitter', {
     failureRedirect: '/'
 }), function (req, res) {
-    res.redirect('/')
+    res.cookie('authStatus', 'true');
+    res.render('main', {message: 'Welcome '+ req.user.username})
 })
 
 module.exports = router;

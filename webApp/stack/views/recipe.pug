@@ -1,8 +1,15 @@
 extends layout
 
 block content
+    a(href="/") Go back to main page
     h1= title
 
     for results in result.hits
         p #{results.recipe.label}
+        p
+        a(href=results.recipe.url) Find the recipe
+        p
         img(src=results.recipe.image)
+        form(action='/restaurant', method = 'post') Find nearby restaurant:
+            input(type='text', name='search', placeholder=' ')
+            input(type='submit', value=results.recipe.label, name="label", action='/restaurant')

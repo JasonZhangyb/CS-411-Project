@@ -1,5 +1,15 @@
 extends layout
 
+
 block content
     h1= title
     h4= "Result for a list of restaurants"
+    a(href="/") Go back to main page
+
+    for results in result.restaurants
+        p #{results.name}
+        img(src=results.logoUrl)
+        p #{results.streetAddress}, #{results.city}, #{results.state}, #{results.zip}
+        form(action='/menu', method = 'post') Find menu:
+            input(type='submit', value=results.apiKey, name="id", action='/menu')
+

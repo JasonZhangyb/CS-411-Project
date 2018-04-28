@@ -1,0 +1,12 @@
+extends layout
+
+
+block content
+    a(href="/") Go back to main page
+    ul
+        each val in result
+            p #{'---------------'} #{val.name} #{'----------------'}
+            for results in val.items
+                p #{results.name}
+
+
