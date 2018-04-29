@@ -61,4 +61,7 @@ router.post('/menu', function(req, res) {
     });
 });
 
+router.post('/main', function(req, res) {
+    res.render('main');
+});
 module.exports = router;
