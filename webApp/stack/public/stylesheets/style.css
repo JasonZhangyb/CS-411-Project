@@ -1,8 +1,72 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*body {*/
+  /*padding: 50px;*/
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+/*}*/
+
+/*a {*/
+  /*color: #00B7FF;*/
+/*}*/
+
+body{
+  font-family: Georgia;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  background-color: #259b5e;
 }
 
-a {
-  color: #00B7FF;
+/*global*/
+.container{
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+
+
+#login {
+  min-height: 500px;
+  text-align: center;
+  font-family: Georgia;
+}
+
+#login h1 {
+  font-size: 40px;
+  color: white;
+}
+
+#spacer {
+  padding-bottom: 5px;
+}
+
+#twitlogin {
+  height: 50px;
+}
+
+#logo {
+  margin-top: 50px;
+  height: 200px;
+  width: 270px;
+}
+
+#inputbox {
+  height: 20px;
+  width: 170px;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+
+#guestbtn {
+  top: 10px;
+  font-family: Georgia;
+  font-size: 18px;
+  height: 40px;
+  width: 200px;
+  color: white;
+  background-color: #000000;
+  border-radius: 5px;
+  display: inline-block;
+  line-height: 1;
 }

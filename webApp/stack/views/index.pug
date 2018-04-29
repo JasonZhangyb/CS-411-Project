@@ -1,5 +1,24 @@
-extends layout
+//extends layout
+//
+//block content
+//
+//  a(href="/auth/twitter") Log in with Twitter
 
-block content
 
-  a(href="/auth/twitter") Log in with Twitter
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width')
+  meta(name='description' content='Food website for finding recipes or local options')
+  title  App name title
+  link(rel='stylesheet' href='/stylesheets/style.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+section#login
+  .container
+    image#logo(src='/images/logo.jpg')
+      h1  Welcome to our website!
+      form(method='get' action='/auth/twitter' align='center')
+        input#twitlogin.btTxt.submit(type='image' src='/images/sign-in-with-twitter.png' name='twitlogin')
+      h2  OR
+      form(method='post' action='/main' align='center')
+        input#guestbtn.btn.btn-primary(type='submit' value='Continue as Guest')
