@@ -27,7 +27,7 @@ router.post('/food', function(req, res) {
         if (error) throw new Error(error);
         //console.log(body.hits);
         //console.log(response);
-        res.render('food', {title: 'Recipes', result: JSON.parse(body)});
+        res.render('food', {title: 'Recipes for ' + req.body.search, result: JSON.parse(body)});
     });
 
 });
@@ -53,7 +53,7 @@ router.post('/restaurant', function(req, res){
 
 
 router.post('/menu', function(req, res) {
-    console.log(req.body.id);
+    console.log(req.body);
     request("https://api.eatstreet.com/publicapi/v1/restaurant/" + req.body.id + "/menu?access-token=" + token3, function (error, response, body) {
         if (error) throw new Error(error);
         console.log(body);
@@ -62,6 +62,10 @@ router.post('/menu', function(req, res) {
 });
 
 router.post('/main', function(req, res) {
+    res.render('main');
+});
+
+router.get('/main', function(req, res) {
     res.render('main');
 });
 module.exports = router;
