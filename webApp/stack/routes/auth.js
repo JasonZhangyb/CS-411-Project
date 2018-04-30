@@ -19,21 +19,21 @@ var passportOption = {
 
 passport.use(new Strategy(passportOption,
     function (token, tokenSecret, profile, callback){
-    User.findOneAndUpdate({userID: profile.id},
-        {
-            userID: profile.id,
-            username: profile.username
-        },
-        {'upsert': 'true'},
-        function(err, result){
-            if(err){
-                console.log(err)
-                return callback(err, null)
-            }
-            else{
-                return callback(null, profile)
-            }
-        })
+        User.findOneAndUpdate({userID: profile.id},
+            {
+                userID: profile.id,
+                username: profile.username
+            },
+            {'upsert': 'true'},
+            function(err, result){
+                if(err){
+                    console.log(err)
+                    return callback(err, null)
+                }
+                else{
+                    return callback(null, profile)
+                }
+            })
     })
 )
 
@@ -46,16 +46,16 @@ passport.serializeUser(function (user, callback) {
 passport.deserializeUser(function (obj, callback) {
     //console.log('in deserialize with id', id)
     //User.findOne({twitterID: id}, function (err, user) {
-        //done(err, user)
+    //done(err, user)
     callback(null, obj);
 })
 
 //router.get('/success', function (req, res) {
-  //  res.redirect('/');
+//  res.redirect('/');
 //})
 
 router.get('/logout', function (req, res, next) {
-    User.findOneAndRemove({userID: req.user.userID})
+    User.findOne({userID: req.user.userID})
         .then(function (err, response) {
             req.logOut()
             res.clearCookie()
@@ -70,6 +70,8 @@ router.get('/twitter',
 router.get('/callback', passport.authenticate('twitter', {
     failureRedirect: '/'
 }), function (req, res) {
+    res.cookie('userId', res.req.user.id);
+    res.cookie('userName', res.req.user.displayName);
     res.cookie('authStatus', 'true');
     res.render('main', {message: 'Welcome '+ req.user.username})
 })
