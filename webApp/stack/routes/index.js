@@ -22,10 +22,10 @@ router.post('/food', function(req, res) {
 
     //get api response values
     var term = String(req.body.search);
-    console.log(term);
+    //console.log(term);
 
     Recipe.count({term:term},function(err, result){
-        console.log(result);
+        //console.log(result);
         if(result != 0){
             Recipe.find({term:term}, function (err, result) {
 
@@ -40,7 +40,7 @@ router.post('/food', function(req, res) {
 
                     }});
                 }
-                console.log(food);
+                //console.log(food);
                 res.render('food', {title: 'Recipes', result:food});
 
             });
@@ -71,36 +71,19 @@ router.post('/food', function(req, res) {
 
 
 router.post('/restaurant', function(req, res){
-    console.log(req.body);
-    console.log(req.body.search);
-    if (req.body.search == '') {
-        res.render('redirect', {type: 'recipe', label: req.body.label})
-    } else {
-        if (req.body.label != null)
-            req.body.search = req.body.search + '&search=' + req.body.label
-        request('https://api.eatstreet.com/publicapi/v1/restaurant/search?method=both&street-address=' + req.body.search + '&access-token=' + token3, function (error, response, body){
-            if (error) throw new Error(error);
-            console.log(body);
-            res.render('restaurant', {title: 'Restaurants', result: JSON.parse(body)});
-        });
-    }
-
-});
-
-
-router.post('/restaurant', function(req, res){
-    console.log(req.body);
+    //console.log(req.body);
     console.log(req.body.search);
     var test = String(req.body.search);
-    Restaurants.count({input: test},function(err, result){
+    Restaurants.count({term: test},function(err, result){
         if (result != 0){
-            console.log("haha1");
-            Restaurants.find({input: test}, function(err, result){
-                console.log("haha2")
+            //console.log("haha1");
+            Restaurants.find({term: test}, function(err, result){
+                //console.log("haha2")
                 var jres = {restaurants:[]};
                 for (var i in result){
                     var x = result[i];
                     jres.restaurants.push({
+                        "term":test,
                         "name":x.name,
                         "logoUrl":x.logoURL,
                         "streetAddress":x.street,
@@ -117,7 +100,7 @@ router.post('/restaurant', function(req, res){
             if (req.body.search == '') {
                 res.render('redirect', {type: 'recipe', label: req.body.label})
             }else {
-                console.log("haha3")
+                //console.log("haha3")
                 var INPUT = req.body.search
                 if (req.body.label != null) {
                     req.body.search = req.body.search + '&search=' + req.body.label
@@ -126,7 +109,7 @@ router.post('/restaurant', function(req, res){
                     if (error) throw new Error(error);
                     var Res = JSON.parse(body).restaurants;
                     for (var i = 0; i < Res.length; i++){
-                        const new_res = new Restaurants({input:INPUT, apiMenuKey:Res[i].apiKey, name:Res[i].name, street:Res[i].streetAddress,
+                        const new_res = new Restaurants({term:INPUT, apiMenuKey:Res[i].apiKey, name:Res[i].name, street:Res[i].streetAddress,
                             city:Res[i].city, state:Res[i].state, zip:Res[i].zip, logoURL:Res[i].logoUrl, PhoneNum:Res[i].phone});
                         new_res.save(err => {
                             if (err) return res.status(500).send(err);
