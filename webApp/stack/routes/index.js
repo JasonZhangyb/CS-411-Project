@@ -1,75 +1,3 @@
-// var express = require('express');
-// var router = express.Router();
-// var request = require("request");
-//
-//
-// let token1 = require('../config/Edamam').API_ID;
-// let token2 = require('../config/Edamam').API_KEY;
-// let token3 = require('../config/EatStreet').API_KEY;
-//
-// /* GET home page. */
-// router.get('/', function(req, res) {
-//     res.render('index', { title: 'Recipe Search <3' });
-// });
-//
-// router.post('/food', function(req, res) {
-//
-//     //console.log(req.body);
-//     //console.log(req.body.search);
-//
-//     // search in cache recipes with req.body.search
-//
-//
-//     //get api response values
-//
-//
-//     request('https://api.edamam.com/search?q='+ req.body.search + '&app_id=' + token1 +'&app_key=' + token2 + '&to=30', function (error, response, body){
-//         if (error) throw new Error(error);
-//         //console.log(body.hits);
-//         //console.log(response);
-//         res.render('food', {title: 'Recipes for ' + req.body.search, result: JSON.parse(body)});
-//     });
-//
-// });
-//
-//
-// router.post('/restaurant', function(req, res){
-//     console.log(req.body);
-//     console.log(req.body.search);
-//     if (req.body.search == '') {
-//         res.render('redirect', {type: 'recipe', label: req.body.label})
-//     } else {
-//         if (req.body.label != null)
-//             req.body.search = req.body.search + '&search=' + req.body.label
-//         request('https://api.eatstreet.com/publicapi/v1/restaurant/search?method=both&street-address=' + req.body.search + '&access-token=' + token3, function (error, response, body){
-//             if (error) throw new Error(error);
-//             console.log(body);
-//             res.render('restaurant', {title: 'Restaurants', result: JSON.parse(body)});
-//         });
-//     }
-//
-// });
-//
-//
-//
-// router.post('/menu', function(req, res) {
-//     console.log(req.body);
-//     request("https://api.eatstreet.com/publicapi/v1/restaurant/" + req.body.id + "/menu?access-token=" + token3, function (error, response, body) {
-//         if (error) throw new Error(error);
-//         console.log(body);
-//         res.render('menu', {result: JSON.parse(body)});
-//     });
-// });
-//
-// router.post('/main', function(req, res) {
-//     res.render('main');
-// });
-//
-// router.get('/main', function(req, res) {
-//     res.render('main');
-// });
-// module.exports = router;
-
 var express = require('express');
 var router = express.Router();
 var request = require("request");
@@ -105,12 +33,12 @@ router.post('/food', function(req, res) {
                 for (var i in result){
                     var item = result[i];
                     food.hits.push({"recipe":{
-                            "term":item.term,
-                            "label":item.label,
-                            "image":item.image,
-                            "url":item.url
+                        "term":item.term,
+                        "label":item.label,
+                        "image":item.image,
+                        "url":item.url
 
-                        }});
+                    }});
                 }
                 console.log(food);
                 res.render('food', {title: 'Recipes', result:food});
@@ -230,10 +158,10 @@ router.post('/menu', function(req, res) {
                     console.log(result[i].name)
                     for (var j in result[i].name)
                         console.log(result[i].name[j]);
-                    var item = result[i].name[j];
-                    name1.items.push({
-                        "name": item,
-                        "nothing":"hi"
+                        var item = result[i].name[j];
+                        name1.items.push({
+                            "name": item,
+                            "nothing":"hi"
                     });
                 }
                 console.log(name1.items);
@@ -272,14 +200,6 @@ router.post('/menu', function(req, res) {
             });
         }
     })
-});
-
-router.post('/main', function(req, res) {
-    res.render('main');
-});
-
-router.get('/main', function(req, res) {
-    res.render('main');
 });
 
 module.exports = router;

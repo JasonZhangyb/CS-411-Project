@@ -6,6 +6,7 @@ if (!mongoose.connection.db){
 var db = mongoose.connection;
 var Schema = mongoose.Schema;
 var menus = new Schema({
+    resKey: String,
     category: String,
     name:[String]
 
