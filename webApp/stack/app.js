@@ -17,21 +17,6 @@ var twitter_routes = require('./routes/auth');
 
 var app = express();
 
-//var MongoClient = require('mongodb').MongoClient;
-//
-// // Connect to the db
-// MongoClient.connect("mongodb://localhost", function (err, client) {
-//     if (err) throw err;
-//
-//     var db = client.db("CS411");
-//
-//     db.collection("CS411test").findOne({}, function (findErr, result) {
-//         if (findErr) throw findErr;
-//             console.log(result.Title);
-//             client.close();
-//     });
-// });
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,12 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'this is not a secret' }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Make our db accessible to our router
-//app.use(function(req,res,next){
-  //  req.db = db;
-    //next();
-//});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

@@ -10,10 +10,7 @@ var recipes = new Schema({
     term: String,
     label: String,
     image: String,
-    recipe_url: String,
-    yield: Number,
-    calories: Number,
-    ingredients: [String]
+    recipe_url: String
 })
 
 var Recipes = mongoose.model('Recipes', recipes);

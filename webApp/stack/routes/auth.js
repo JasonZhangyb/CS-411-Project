@@ -55,7 +55,7 @@ passport.deserializeUser(function (obj, callback) {
 //})
 
 router.get('/logout', function (req, res, next) {
-    User.findOneAndRemove({userID: req.user.userID})
+    User.findOne({userID: req.user.userID})
         .then(function (err, response) {
             req.logOut()
             res.clearCookie()
@@ -70,6 +70,8 @@ router.get('/twitter',
 router.get('/callback', passport.authenticate('twitter', {
     failureRedirect: '/'
 }), function (req, res) {
+    res.cookie('userId', res.req.user.id);
+    res.cookie('userName', res.req.user.displayName);
     res.cookie('authStatus', 'true');
     res.render('main', {message: 'Welcome '+ req.user.username})
 })
