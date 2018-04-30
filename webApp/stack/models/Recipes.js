@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 if (!mongoose.connection.db){
     mongoose.connect('mongodb://localhost/CS411');
 }

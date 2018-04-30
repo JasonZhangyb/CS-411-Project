@@ -36,11 +36,10 @@ router.post('/food', function(req, res) {
                         "term":item.term,
                         "label":item.label,
                         "image":item.image,
-                        "url":item.url
-
+                        "url":item.recipe_url
                     }});
                 }
-                //console.log(food);
+                console.log(food.hits);
                 res.render('food', {title: 'Recipes', result:food});
 
             });
@@ -103,6 +102,7 @@ router.post('/restaurant', function(req, res){
                 //console.log("haha3")
                 var INPUT = req.body.search
                 if (req.body.label != null) {
+                    console.log(req.body.label);
                     req.body.search = req.body.search + '&search=' + req.body.label
                 }
                 request('https://api.eatstreet.com/publicapi/v1/restaurant/search?method=both&street-address=' + req.body.search + '&access-token=' + token3, function (error, response, body){
@@ -129,7 +129,7 @@ router.post('/restaurant', function(req, res){
 router.post('/menu', function(req, res) {
 
     var resKey = req.body.id;
-
+/*
     Menus.count({resKey: resKey},function(err, result) {
 
         if (result != 0) {
@@ -138,16 +138,16 @@ router.post('/menu', function(req, res) {
                 var name1 = {items: []};
                 console.log(result[0].name);
                 for (var i in result) {
-                    console.log(result[i].name)
+                    //console.log(result[i].name)
                     for (var j in result[i].name)
-                        console.log(result[i].name[j]);
+                        //console.log(result[i].name[j]);
                         var item = result[i].name[j];
                         name1.items.push({
                             "name": item,
                             "nothing":"hi"
                     });
                 }
-                console.log(name1.items);
+                //console.log(name1.items);
                 for (var j in result) {
                     var item2 = result[j];
 
@@ -157,13 +157,13 @@ router.post('/menu', function(req, res) {
 
                     });
                 }
-                console.log(menus.hits);
+                //console.log(menus.hits);
                 res.render('menu', {result: menus.hits});
 
             });
         }
 
-        else {
+        else {*/
             request("https://api.eatstreet.com/publicapi/v1/restaurant/" + resKey + "/menu?access-token=" + token3, function (error, response, body) {
                 if (error) throw new Error(error);
                 console.log(body);
@@ -181,8 +181,8 @@ router.post('/menu', function(req, res) {
                 }
                 res.render('menu', {result: JSON.parse(body)});
             });
-        }
-    })
+        //}
+    //})
 });
 
 router.post('/main', function(req, res) {

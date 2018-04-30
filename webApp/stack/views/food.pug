@@ -27,7 +27,7 @@ head
             img(src=results.recipe.image)
             form(action='/restaurant', method = 'post') Restaurants serving this dish:
                 input(type='text', name='search', placeholder='Enter your address...', required='')
-                input#submit(type='submit', value="Search", name="label", action='/restaurant')
+                input(type='submit', value=results.recipe.label, name="label", action='/restaurant')
 
 
     script.
