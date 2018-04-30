@@ -1,8 +1,287 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*body {*/
+  /*padding: 50px;*/
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+/*}*/
+
+/*a {*/
+  /*color: #00B7FF;*/
+/*}*/
+
+body{
+  font-family: Georgia;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  background-color: #259b5e;
 }
 
-a {
-  color: #00B7FF;
+/*global*/
+.container{
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
 }
+
+
+
+#login {
+  min-height: 500px;
+  text-align: center;
+  font-family: Georgia;
+}
+
+#login h1 {
+  font-size: 40px;
+  color: white;
+}
+
+#spacer {
+  padding-bottom: 5px;
+}
+
+#twitlogin {
+  height: 50px;
+}
+
+#logo {
+  margin-top: 50px;
+  height: 375px;
+  width: 375px;
+}
+
+#inputbox {
+  height: 20px;
+  width: 170px;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+
+#guestbtn {
+  top: 10px;
+  font-family: Georgia;
+  font-size: 18px;
+  height: 40px;
+  width: 200px;
+  color: white;
+  background-color: #000000;
+  border-radius: 5px;
+  display: inline-block;
+  line-height: 1;
+}
+
+
+
+.container{
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+/*Header*/
+
+
+.header{
+  background: #213037;
+  color: #ffffff;
+  min-height: 130px;
+
+}
+
+.header a{
+  color: #f8b834;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+
+.header li{
+  float: left;
+  display: inline;
+  padding: 0 20px 0 20px;
+  font-family: Georgia;
+}
+
+.header #branding{
+  float:left;
+}
+
+.header #branding h1 {
+  margin: 0;
+}
+
+.header nav{
+  float: right;
+  margin-top: 10px;
+}
+
+.header .highlight, header .current a{
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.header a:hover{
+  color: #cccccc;
+  font-weight: bold;
+}
+
+#branding img {
+  margin-left: 60px;
+  margin-top: 8px;
+  width: 130px;
+  height: 111px;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+
+
+/* Boxes */
+#boxes{
+  margin-top:100px;
+}
+
+#boxes h3 {
+  color: #213037;
+}
+
+#boxes .box{
+  float:left;
+  text-align: center;
+  width:45%;
+  padding:25px;
+  border-color: #29898b;
+}
+
+
+.button_1{
+  height: 35px;
+  text-align: center;
+  background: #213037;
+  border:0;
+  margin-top: 13px;
+  padding-left: 20px;
+  padding-right:20px;
+  color:#ffffff;
+}
+
+input[type=text] {
+  width: 45%;
+  height: 50px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+input[type=submit] {
+  height: 35px;
+  text-align: center;
+  background: #213037;
+  border:0;
+  margin-top: 13px;
+  padding-left: 20px;
+  padding-right:20px;
+  color:#ffffff;
+}
+
+#recipe{
+  text-align: center;
+  font-size: 25px;
+  margin-top: 30px;
+  color: #213037;
+}
+
+#recipe img {
+  height: 200px;
+  width: 200px;
+}
+
+#recipes {
+  text-align: center;
+}
+
+#rbox {
+  width: 200px;
+  font-size: 20px;
+  padding: 10px;
+  border: 3px solid #213037;
+  margin: auto;
+  background: #f78d27;
+  text-align: center;
+  color: #213037;
+}
+
+#submit {
+  height: 35px;
+  text-align: center;
+  background: #29898b;
+  border:0;
+  margin-top: 13px;
+  padding-left: 20px;
+  padding-right:20px;
+  color:#ffffff;
+}
+
+#recipesubmit {
+  height: 35px;
+  text-align: center;
+  background: #f78d27;
+  border: 0px;
+  margin-top: 13px;
+  padding-left: 20px;
+  padding-right:20px;
+  color: #213037;
+}
+
+#menu{
+  text-align: center;
+  font-size: 23px;
+  margin-top: 10px;
+  color: #213037;
+}
+
+.button a:link, a:visited {
+  font-size: 20px;
+  background-color: #f8b834;
+  color: #213037;
+  padding: 7px 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 0px;
+
+}
+
+#address {
+  color: #f8b834;
+}
+
+h1#recipes{
+  color: #213037;
+}
+
+
+/*.button a:hover, a:active {
+  background-color: red;
+}*/

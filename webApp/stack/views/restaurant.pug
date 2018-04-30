@@ -1,16 +1,43 @@
-extends layout
-
-
-block content
-    a(href='/auth/logout') Log out Twitter
-    h1= title
-    h4= "Result for a list of restaurants"
-    a(href="/") Go back to main page
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width')
+    meta(name='description' content='Food website for finding recipes or local options')
+    meta(name='author' content= 'Nidhi Reddy')
+    title chai tea | Restaurants
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    #myHeader.header
+        .container
+            #branding
+                a(href="/main")
+                    img(src='/images/website_logo.jpg')
+            nav
+                ul
+                    li
+                        a(href='/auth/logout')  log out of twitter
+    h1#recipes #{title}
 
     for results in result.restaurants
-        p #{results.name}
-        img(src=results.logoUrl)
-        p #{results.streetAddress}, #{results.city}, #{results.state}, #{results.zip}
-        form(action='/menu', method = 'post') Find menu:
-            input(type='submit', value=results.apiKey, name="id", action='/menu')
+        #recipe
+            p#rbox #{results.name}
+            p
+            img(src=results.logoUrl)
+            p#address #{results.streetAddress}, #{results.city}, #{results.state}, #{results.zip}
+            form(action='/menu', method = 'post') See menu:
+                input(type='submit', value=results.apiKey name="id", action='/menu')
+
+    script.
+        window.onscroll = function () {
+            myFunction()
+        };
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+
 

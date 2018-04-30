@@ -1,16 +1,67 @@
-extends layout
+//extends layout
+//
+//block content
+//    a(href='/auth/logout') Log out Twitter
+//    h1= title
+//    h2= message
+//    h4= "Search for a recipe below:"
+//
+//
+//    form(action='/food', method = 'post')
+//        input(type='text', name='search', placeholder=' ')
+//        input(type='submit', action='/food')
+//
+//
+//    form(action='/restaurant', method = 'post')
+//        input(type='text', name='search', placeholder=' ')
+//        input(type='submit', action='/restaurant')
 
-block content
-    a(href='/auth/logout') Log out Twitter
-    h1= title
-    h2= message
-    h4= "Search for a recipe below:"
 
-    form(action='/food', method = 'post')
-        input(type='text', name='search', placeholder=' ')
-        input(type='submit', action='/food')
-
-
-    form(action='/restaurant', method = 'post')
-        input(type='text', name='search', placeholder=' ')
-        input(type='submit', action='/restaurant')
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width')
+    meta(name='description' content='Food website for finding recipes or local options')
+    meta(name='author' content= 'Nidhi Reddy')
+    title chai tea | Home
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+#myHeader.header
+    .container
+        #branding
+            a(href="/main")
+                img(src='/images/website_logo.jpg')
+        nav
+            ul
+                li
+                    a(href='/auth/logout')  log out of twitter
+section#boxes
+    .container
+        .box
+            h3 Search for a recipe:
+            br
+            form(action='/food' method='post')
+                input(type='text', name='search', placeholder='Enter a dish name...', required='')
+                br
+                input(type='submit', action='/food')
+        .box
+            h3 Search for local restaurants:
+            br
+            form(action='/restaurant', method = 'post')
+                input(type='text', name='search', placeholder='Enter your address...', required='')
+                br
+                input(type='submit', action='/restaurant')
+//
+  div class="content">
+  <p> Put all my text here (for the other pages)
+  </div
+script.
+    window.onscroll = function() {myFunction()};
+    var header = document.getElementById("myHeader");
+    var sticky = header.offsetTop;
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+    }
