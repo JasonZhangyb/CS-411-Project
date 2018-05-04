@@ -39,7 +39,7 @@ router.post('/food', function(req, res) {
                         "url":item.recipe_url
                     }});
                 }
-                console.log(food.hits);
+                //console.log(food.hits);
                 res.render('food', {title: 'Recipes', result:food});
 
             });
@@ -73,44 +73,64 @@ router.post('/restaurant', function(req, res){
     //console.log(req.body);
     console.log(req.body.search);
     var test = String(req.body.search);
-    Restaurants.count({term: test},function(err, result){
-        if (result != 0){
-            //console.log("haha1");
-            Restaurants.find({term: test}, function(err, result){
-                //console.log("haha2")
-                var jres = {restaurants:[]};
-                for (var i in result){
-                    var x = result[i];
-                    jres.restaurants.push({
-                        "term":test,
-                        "name":x.name,
-                        "logoUrl":x.logoURL,
-                        "streetAddress":x.street,
-                        "city":x.city,
-                        "state":x.state,
-                        "zip":x.zip,
-                        "apiKey":x.apiMenuKey
-                    });
-                };
-                res.render('restaurant',{title:'Restaurants', result:jres});
+    var food = req.body.label.split(' ').join('&');
 
-            });
-        } else{
-            if (req.body.search == '') {
-                res.render('redirect', {type: 'recipe', label: req.body.label})
-            }else {
+    Restaurants.count({term: test, food: food}, function (err, result) {
+        if (req.body.search == '') {
+            res.render('redirect', {type: 'recipe', label: req.body.label})
+        }
+
+        else{
+            if (result != 0) {
+                var test = String(req.body.search);
+                var food = req.body.label.split(' ').join('&');
+                Restaurants.find({term: test, food: food}, function (err, result) {
+                    console.log(food);
+                    var jres = {restaurants: []};
+                    for (var i in result) {
+                        var x = result[i];
+                        jres.restaurants.push({
+                            "term": test,
+                            "name": x.name,
+                            "logoUrl": x.logoURL,
+                            "streetAddress": x.street,
+                            "city": x.city,
+                            "state": x.state,
+                            "zip": x.zip,
+                            "apiKey": x.apiMenuKey
+                        });
+                    }
+                    ;
+                    res.render('restaurant', {title: 'Restaurants', result: jres});
+
+                });
+            } else {
+
+
                 //console.log("haha3")
                 var INPUT = req.body.search
+                var food = req.body.label.split(' ').join('&')
                 if (req.body.label != null) {
                     console.log(req.body.label);
-                    req.body.search = req.body.search + '&search=' + req.body.label
+                    req.body.search = req.body.search + '&search=' + food;
                 }
-                request('https://api.eatstreet.com/publicapi/v1/restaurant/search?method=both&street-address=' + req.body.search + '&access-token=' + token3, function (error, response, body){
+                request('https://api.eatstreet.com/publicapi/v1/restaurant/search?method=both&street-address=' + req.body.search + '&access-token=' + token3, function (error, response, body) {
                     if (error) throw new Error(error);
                     var Res = JSON.parse(body).restaurants;
-                    for (var i = 0; i < Res.length; i++){
-                        const new_res = new Restaurants({term:INPUT, apiMenuKey:Res[i].apiKey, name:Res[i].name, street:Res[i].streetAddress,
-                            city:Res[i].city, state:Res[i].state, zip:Res[i].zip, logoURL:Res[i].logoUrl, PhoneNum:Res[i].phone});
+                    console.log("Got here!")
+                    for (var i = 0; i < Res.length; i++) {
+                        const new_res = new Restaurants({
+                            term: INPUT,
+                            food: food,
+                            apiMenuKey: Res[i].apiKey,
+                            name: Res[i].name,
+                            street: Res[i].streetAddress,
+                            city: Res[i].city,
+                            state: Res[i].state,
+                            zip: Res[i].zip,
+                            logoURL: Res[i].logoUrl,
+                            PhoneNum: Res[i].phone
+                        });
                         new_res.save(err => {
                             if (err) return res.status(500).send(err);
                         });
@@ -121,8 +141,6 @@ router.post('/restaurant', function(req, res){
             }
         }
     })
-
-
 
 });
 

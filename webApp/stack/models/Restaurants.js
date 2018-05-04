@@ -8,6 +8,7 @@ var Schema = mongoose.Schema;
 
 var restaurants = new Schema({
     term: String,
+    food: String,
     apiMenuKey: String,
     name: String,
     street: String,
