@@ -16,12 +16,23 @@ head
                     li
                         a(href='/auth/logout')  log out of twitter
     h1#recipes MENU
-    ul
-        each val in result
-            #menu
-            p#rbox #{val.name}
-            for results in val.items
-                p#menu #{results.name}
+
+    if type == "cache"
+        ul
+            each val in result
+                #menu
+                p#rbox #{val.category}
+                for results in val.name
+                    p#menu #{results}
+
+    else
+        ul
+            each val in result
+                #menu
+                p#rbox #{val.name}
+                for results in val.items
+                    p#menu #{results.name}
+
 
     script.
         window.onscroll = function () {

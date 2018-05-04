@@ -16,16 +16,17 @@ router.get('/', function(req, res) {
     res.render('index', { title: 'Recipe Search <3' });
 });
 
+
+/* POST to Food page*/
 router.post('/food', function(req, res) {
 
-    // search in cache recipes with req.body.search
-
-    //get api response values
+    // get the user input
     var term = String(req.body.search);
-    //console.log(term);
 
+    // count the items in cache with param term
     Recipe.count({term:term},function(err, result){
         //console.log(result);
+        // if there are items in the cache, render them to food page
         if(result != 0){
             Recipe.find({term:term}, function (err, result) {
 
@@ -44,6 +45,7 @@ router.post('/food', function(req, res) {
 
             });
         }
+        // if there is no item in the cache, call recipe API and store them into cache; render API response to food page
         else{
             request ('https://api.edamam.com/search?q='+ req.body.search + '&app_id=' + token1 +'&app_key=' + token2 + '&to=30', function (error, response, body) {
                 if (error) throw new Error(error);
@@ -68,22 +70,25 @@ router.post('/food', function(req, res) {
 
 });
 
-
+/* POST to Restaurant page*/
 router.post('/restaurant', function(req, res){
     //console.log(req.body);
     console.log(req.body.search);
+    // get user input and food label
     var test = String(req.body.search);
-    var food = req.body.label.split(' ').join('&');
+    var food = String(req.body.label).split(' ').join('&');
 
+    // count the items in cache with param term and food
     Restaurants.count({term: test, food: food}, function (err, result) {
         if (req.body.search == '') {
             res.render('redirect', {type: 'recipe', label: req.body.label})
         }
 
         else{
+            // if there are items in the cache, render them to restaurants page
             if (result != 0) {
                 var test = String(req.body.search);
-                var food = req.body.label.split(' ').join('&');
+                var food = String(req.body.label).split(' ').join('&');
                 Restaurants.find({term: test, food: food}, function (err, result) {
                     console.log(food);
                     var jres = {restaurants: []};
@@ -104,12 +109,12 @@ router.post('/restaurant', function(req, res){
                     res.render('restaurant', {title: 'Restaurants', result: jres});
 
                 });
-            } else {
+            }
+            // if there is no item in the cache, call restaurant API and store them into cache; render API response to restaurant page
+            else {
 
-
-                //console.log("haha3")
                 var INPUT = req.body.search
-                var food = req.body.label.split(' ').join('&')
+                var food = String(req.body.label).split(' ').join('&')
                 if (req.body.label != null) {
                     console.log(req.body.label);
                     req.body.search = req.body.search + '&search=' + food;
@@ -144,44 +149,23 @@ router.post('/restaurant', function(req, res){
 
 });
 
+/* POST to Menu page*/
 router.post('/menu', function(req, res) {
 
     var resKey = req.body.id;
-/*
+
+    // count the items in cache with param resKey
     Menus.count({resKey: resKey},function(err, result) {
 
         if (result != 0) {
             Menus.find({resKey: resKey}, function (err, result) {
-                var menus = {hits: []};
-                var name1 = {items: []};
-                console.log(result[0].name);
-                for (var i in result) {
-                    //console.log(result[i].name)
-                    for (var j in result[i].name)
-                        //console.log(result[i].name[j]);
-                        var item = result[i].name[j];
-                        name1.items.push({
-                            "name": item,
-                            "nothing":"hi"
-                    });
-                }
-                //console.log(name1.items);
-                for (var j in result) {
-                    var item2 = result[j];
 
-                    menus.hits.push({
-                        "name": item2.category,
-                        "items": name1.items
-
-                    });
-                }
-                //console.log(menus.hits);
-                res.render('menu', {result: menus.hits});
+                res.render('menu', {result: result, type: "cache"});
 
             });
         }
-
-        else {*/
+        // if there is no item in the cache, call menus API and store them into cache; render API response to menu page
+        else {
             request("https://api.eatstreet.com/publicapi/v1/restaurant/" + resKey + "/menu?access-token=" + token3, function (error, response, body) {
                 if (error) throw new Error(error);
                 console.log(body);
@@ -199,9 +183,10 @@ router.post('/menu', function(req, res) {
                 }
                 res.render('menu', {result: JSON.parse(body)});
             });
-        //}
-    //})
+        }
+    })
 });
+
 
 router.post('/main', function(req, res) {
     res.render('main');
